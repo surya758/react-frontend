@@ -32,5 +32,5 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
     - name: Upload files to s3
-    - run: aws s3 sync build s3://experiment-10072022 --delete
+      run: aws s3 sync build s3://experiment-10072022 --delete
       
