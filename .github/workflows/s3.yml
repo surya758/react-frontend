@@ -23,6 +23,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: npm ci 
+    - run: npm build
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -30,7 +32,5 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
     - name: Upload files to s3
-      run: |
-        echo "hi text" > hi.txt
-        aws s3 cp hi.txt s3://experiment-10072022/hi.txt
+    - run: aws s3 sync build s3://experiment-10072022 --delete
       
